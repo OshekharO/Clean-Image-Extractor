@@ -18,7 +18,7 @@ def extract_text(image_path, output_file):
     # Clean image
     cleaned = clean_image(image)
     # Extract text using Tesseract
-    text = pytesseract.image_to_string(cleaned, lang='eng')
+    text = pytesseract.image_to_string(cleaned, lang='chi_sim')
     # Save text to file
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(text)

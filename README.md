@@ -1,5 +1,9 @@
-# clean_img_ext
+# clean img ext
 Python program that uses the OpenCV library to clean bulk images, and then uses the Tesseract OCR library to extract text from the cleaned images
+
+### Special Note:
+
+Make sure you have installed Tesseract OCR engine before installing pytesseract. You can download and install the Tesseract OCR engine from this link: https://github.com/tesseract-ocr/tesseract/wiki
 
 ### Here's a brief explanation of how it works:
 

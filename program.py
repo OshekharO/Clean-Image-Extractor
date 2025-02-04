@@ -9,11 +9,12 @@ import pytesseract
 
 def clean_image(image):
     """
-    Clean the image by converting to grayscale, applying thresholding, and morphology.
+    Clean the image by converting to grayscale, blurring, applying thresholding, and morphology.
     """
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
-    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3))
+    blur = cv2.GaussianBlur(gray, (3, 3), 0)
+    thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
     clean = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel, iterations=1)
     return clean
 
@@ -25,7 +26,8 @@ def extract_text(image_path, output_file):
             print(f"Error: Unable to read image {image_path}")
             return
         cleaned = clean_image(image)
-        text = pytesseract.image_to_string(cleaned, lang='chi_sim')
+        # Use Tesseract with Chinese language and page segmentation mode 6
+        text = pytesseract.image_to_string(cleaned, lang='chi_sim', config='--psm 6')
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(text)
     except Exception as e:

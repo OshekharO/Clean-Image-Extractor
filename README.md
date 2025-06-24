@@ -1,4 +1,4 @@
-# Image2Text-Pro 🖼️➡️📝
+# Image2Text-Pro
 
 Advanced OCR tool for extracting text from images with preprocessing and parallel processing.
 

@@ -1,29 +1,62 @@
-# Clean Image Extractor
+# Image2Text-Pro 🖼️➡️📝
 
-A Python-based tool that leverages the power of OpenCV and Tesseract OCR to cleanse images and extract text from them in a bulk manner. 
+Advanced OCR tool for extracting text from images with preprocessing and parallel processing.
 
-## Prerequisite
+![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)
+![OpenCV](https://img.shields.io/badge/OpenCV-4.5+-green?logo=opencv)
+![Tesseract](https://img.shields.io/badge/Tesseract-OCR-orange)
 
-Before proceeding, ensure that the [Tesseract OCR engine](https://github.com/tesseract-ocr/tesseract/wiki) is installed on your system. Tesseract OCR is an open-source Optical Character Recognition engine used to recognize textual data from images.
+## Features ✨
 
-## How it Works
+- 📷 Supports multiple image formats (JPG, PNG, TIFF, BMP)
+- 🔍 Advanced image preprocessing for better OCR accuracy
+- ⚡ Parallel processing for fast batch operations
+- 🌍 Multi-language support (Chinese by default)
+- 📊 Progress tracking and performance metrics
+- 🛠️ Configurable preprocessing and OCR parameters
 
-The program runs in two significant steps:
+## Installation 🛠️
 
-1. **Image Cleaning**: Through OpenCV, the program processes each image, reducing noise and enhancing the image quality to ensure optimal text extraction.
+1. Install Tesseract OCR:
+   ```bash
+   # On Ubuntu/Debian
+   sudo apt install tesseract-ocr
+   sudo apt install libtesseract-dev
 
-2. **Text Extraction**: Utilizing the Tesseract OCR engine, the program extracts textual data from the cleaned images, writing the result to individual text files.
+   # On macOS
+   brew install tesseract
+   ```
 
-## Usage
+2. Python Dependencies:
+   ```python
+    pip install -r requirements.txt
+   ```
 
-Here's a breakdown of the core functions and how they interact:
+## Usage 🚀
 
-- `clean_image()`: This function accepts an image as input, applying several image processing techniques via OpenCV to clean the image and eliminate noise.
+1. Basic Command:
+   
+   `
+   python text_extractor.py -i input_images -o output_texts
+   `
 
-- `extract_text()`: This function takes two parameters: the path to an image file and the path to an output text file. It loads the image, cleans it using the `clean_image()` function, and then uses Tesseract OCR to extract text from the cleaned image. The extracted text is then saved to the specified output text file.
+3. Advanced Usage:
+   
+   `
+   python text_extractor.py \
+  -i ./photos \
+  -o ./extracted_texts \
+  --lang eng+chi_sim \
+  --psm 11 \
+  --workers 8 
+   `
+   
+## Contributing 🤝
+   We welcome contributions! Please:
+   1. Fork the repository
+   2. Create a feature branch (git checkout -b feature/your-feature)
+   3. Commit your changes (git commit -m 'Add some feature')
+   4. Push to the branch (git push origin feature/your-feature)
+   5. Open a Pull Request
 
-- `main()`: This function serves as the orchestrator. It retrieves a list of image files in a specified directory, processing each image file using the `extract_text()` function. The resulting output text files are saved in a separate directory, with names following the format `text1.txt`, `text2.txt`, and so on.
-
-### Disclaimer
-
-Please note that the quality of the image impacts the accuracy of the text extraction. Better image quality would invariably lead to more accurate text extraction. Post-processing such as spell-checking might also be necessary to handle OCR's occasional recognition errors.
+<div align="center"> <p>Made with ❤️ and Python</p> <sub>OCR accuracy may vary depending on image quality and language complexity</sub> </div>
